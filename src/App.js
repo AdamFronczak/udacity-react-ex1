@@ -106,7 +106,23 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <h2>Favorite Movies</h2>
+		<FavoriteMovies />
       </div>
+    );
+  }
+}
+
+class FavoriteMovies extends Component {
+  render() {
+    var favorites = profiles.map(p => ({
+      user: Object.values(users).filter(u => u.id == p.userID)[0],
+      movie: Object.values(movies).filter(m => m.id == p.favoriteMovieID)[0]
+    }));
+    
+    return (
+      <ol>
+      	{favorites.map(x => <li>{x.user.name}'s favorite movie is {x.movie.name}.</li>)}
+      </ol>
     );
   }
 }
